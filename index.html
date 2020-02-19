@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Jens Tinfors's website</title>
+  <title>Jens Tinfors | Web Developer</title>
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
 </head>
 <body class="w-100 sans-serif bg-white">
@@ -13,19 +13,51 @@
           <div class="mw9 center pa4 pt5-ns ph7-l">
             <time class="f6 mb2 dib ttu tracked"><small>17 January, 2020</small></time>
             <h3 class="f2 f1-m f-headline-l measure-narrow lh-title mv0">
-              <span class="bg-black-90 lh-copy white pa1 tracked-tight">
-                Needs more react and state machinery
+              <span class="bg-black-90 lh-copy white pa1 tracked-tight" id="heading">
               </span>
             </h3>
           </div>
         </header>
         <div class="pa4 ph7-l georgia mw9-l center">
+          <p class="f3 f3-ns lh-copy measure georgia">
+            You&#39;ve reached the homepage of Stockholm, Sweden based web developer Jens Tinfors.
+          </p>
           <p class="f5 f3-ns lh-copy measure georgia">
-            Jens Tinfors is a web developer, code monkey of backends, frontends and everything inbetween
+            Jens Tinfors is a web developer, a code monkey, a calculating machine, a code poet, a creator of backends, frontends and everything inbetween.
+          </p>
+          <p class="f5 f3-ns lh-copy measure georgia">
+            He&#39;s been writing codes for moneys since 1999 for such clients and consultancy agents as
+            <a class="f5 fw6 link dim dark-gray" href="https://www.svt.se/">SVT</a>,
+            <a class="f5 fw6 link dim dark-gray" href="https://www.hemnet.se/">Hemnet</a>,
+            <a class="f5 fw6 link dim dark-gray" href="https://www.Viaplay.se/">Viaplay</a>,
+            <a class="f5 fw6 link dim dark-gray" href="https://www.lnu.se/">Linneasu University</a>,
+            <a class="f5 fw6 link dim dark-gray" href="https://www.ericsson.se/">Ericsson</a>,
+            <a class="f5 fw6 link dim dark-gray" href="https://www.valtech.se/">Valtech</a>,
+            <a class="f5 fw6 link dim dark-gray" href="https://www.beamonpeople.se/">Beamon Beople</a>
+          </p>
+          <p class="f5 f3-ns lh-copy measure georgia">
+            Having been active in the field since 1999 he&#39;s come across alot of languages and frameworks. Most recently though it&#39;s mainly been Javascript and Node.js.
           </p>
         </div>
       </article>
     </div>
   </main>
+  <script>
+    var heading = document.getElementById('heading');
+    var items = [
+      'Finding ever increasing complex ways to render strings',
+      'Needs more react and state machinery',
+      'Never enough abstractions',
+      'Contiously finding ever more complex ways to render strings; web development',
+      'Money!',
+      'Abstract Handler Manager Builder Interface',
+      'Informationwebs',
+      'Interwebs',
+      'Frameworkings',
+      'Web 2.0',
+    ];
+    var item = items[Math.floor(Math.random() * items.length)]
+    heading.innerHTML = item;
+  </script>
 </body>
 </html>
