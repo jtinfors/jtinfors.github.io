@@ -4,11 +4,6 @@
   <meta charset="UTF-8">
   <title>Jens Tinfors | Web Developer</title>
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
-  <style>
-    #heading:hover {
-      cursor: pointer;
-    }
-  </style>
 </head>
 <body class="w-100 sans-serif bg-white">
   <main>
@@ -18,7 +13,7 @@
           <div class="mw9 center pa4 pt5-ns ph7-l">
             <time class="f6 mb2 dib ttu tracked"><small>17 January, 2020</small></time>
             <h3 class="f2 f1-m f-headline-l measure-narrow lh-title mv0">
-              <span class="bg-black-90 lh-copy white pa1 tracked-tight" id="heading">
+              <span class="bg-black-90 lh-copy white pa1 tracked-tight pointer" id="heading">
               </span>
             </h3>
           </div>
@@ -93,6 +88,8 @@
         'Future-proof!',
         'Vanilla!',
         'Pre-Transpilings',
+        'Cyberdyne Systems!',
+        'Initech!'
       ];
 
       heading.innerHTML = buzzwords[Math.floor(Math.random() * buzzwords.length)];
