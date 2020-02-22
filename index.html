@@ -59,28 +59,25 @@
     var fn = function() {
       var heading = document.getElementById('heading');
       var buzzwords = [
-        'Finding ever more increasing complex ways to render strings',
-        'Needs more react and state machinery',
-        'Never enough abstractions',
+        'char[]',
         'IoT!',
         'Synergy!',
         'Thought Leader!',
         'Agile!',
         'Clouds!',
         'Money!',
-        'Abstract Handler Manager Builder Interface!',
         'Informationwebs!',
         'Interwebs!',
         'Frameworkings!',
         'Web 2.0!',
         'Webscale!',
         'All-Stack!',
-        'Machine Learnings!',
-        'Smart Transpiling!',
-        'Quantum Blockchains!',
+        'Machine Learner!',
+        'Transpilings!',
+        'Blockchainings!',
         'Holistic approach!',
         'Streamline!',
-        'Isomorphic Ponyfill!',
+        'Ponyfills!',
         'Big Data!',
         'Disruptive!',
         'Deep Web!',
@@ -89,16 +86,15 @@
         'Next Gen!',
         'Organic growth!',
         'Future-proof!',
-        'Vanilla!',
-        'Pre-Transpilings',
-        'Cyberdyne Systems!',
+        'Vanilla JS!',
+        'Cyberdyne!',
         'Initech!'
       ];
 
       heading.innerHTML = buzzwords[Math.floor(Math.random() * buzzwords.length)];
       var interval = setInterval(function() {
         document.getElementById('heading').innerHTML = buzzwords[Math.floor(Math.random() * buzzwords.length)];
-      }, 50)
+      }, 100)
       setTimeout(function() {
         clearTimeout(interval)
       }, 1000);
