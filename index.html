@@ -11,7 +11,6 @@
       <article>
         <header class="bg-gold sans-serif">
           <div class="mw9 center pa4 pt5-ns ph7-l">
-            <time class="f6 mb2 dib ttu tracked"><small>17 January, 2020</small></time>
             <h3 class="f2 f1-m f-headline-l measure-narrow lh-title mv0">
               <span class="bg-black-90 lh-copy white pa1 tracked-tight pointer" id="heading">
               </span>
@@ -97,12 +96,17 @@
       }, 100)
       setTimeout(function() {
         clearTimeout(interval)
-      }, 1000);
+      }, 999);
     }
 
     document.getElementById('heading').addEventListener('click', function() {
       fn();
     })
+
+    setInterval(function() {
+      fn()
+    }, 1000 * 5)
+
     fn();
   </script>
 </body>
