@@ -1,6 +1,6 @@
-import React from 'react';
+var React = require('react');
 
-const Ticker = ({name}) => {
+var Ticker = function(name) {
   return (
     <p>
       Hello<span> {name}</span>
@@ -8,4 +8,4 @@ const Ticker = ({name}) => {
   );
 };
 
-export default Ticker;
+module.exports = Ticker;
