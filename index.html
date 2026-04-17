@@ -22,21 +22,47 @@
           </div>
         </header>
 
-        <div class="pa4 ph7-l georgia mw9-l center">
-          <p class="f3 f3-ns lh-copy measure georgia">
-            Hi! I&#39;m Jens Tinfors, a senior fullstack developer based in Sweden with 25+ years of experience building production systems — from startups to platforms used by millions.
-          </p>
-          <p class="f3 f3-ns lh-copy measure georgia">
-            My core expertise is React, Next.js and JavaScript, as well as mobile development with SwiftUI and Jetpack Compose. A strong sense of ownership and curiosity for the full product consistently draws me across the entire tech stack <i>(see Curriculum Vitae below)</i>.
-          </p>
-          <p class="f3 f3-ns lh-copy measure georgia">
-            I prioritize pragmatic, maintainable solutions that deliver value quickly. End-user outcomes matter more than technical elegance for its own sake. I also believe a collaborative, high-energy team culture is just as important as the technical work itself.
-          </p>
-          <p class="f3 f3-ns lh-copy measure georgia">
-            <em>Random fact about me:</em> I hold a Journeyman&#39;s Certificate in fine woodworking 👨‍🔧 🪑
-          </p>
+        <style>
+          .intro-photo {
+            float: right;
+            width: 30%;
+            max-width: 220px;
+            min-width: 120px;
+            margin: 0 0 1rem 1.5rem;
+            border-radius: 4px;
+            overflow: hidden;
+          }
+          .intro-photo img {
+            width: 100%;
+            display: block;
+          }
+          .intro-clearfix::after {
+            content: '';
+            display: table;
+            clear: both;
+          }
+        </style>
 
-          <h2 class="f4 fw6 tracked ttu">Leadership &amp; Responsibilities</h2>
+        <div class="pa4 ph7-l georgia mw9-l center">
+          <div class="intro-clearfix">
+            <div class="intro-photo">
+              <img src="images/jens.png" alt="Jens Tinfors" />
+            </div>
+              <p class="f3 f3-ns lh-copy measure georgia">
+                Hi! I&#39;m Jens Tinfors, a senior fullstack developer based in Sweden with 25+ years of experience building production systems — from startups to platforms used by millions.
+              </p>
+              <p class="f3 f3-ns lh-copy measure georgia">
+                My core expertise is React, Next.js and JavaScript, as well as mobile development with SwiftUI and Jetpack Compose. A strong sense of ownership and curiosity for the full product consistently draws me across the entire tech stack <i>(see Curriculum Vitae below)</i>.
+              </p>
+              <p class="f3 f3-ns lh-copy measure georgia">
+                I prioritize pragmatic, maintainable solutions that deliver value quickly. End-user outcomes matter more than technical elegance for its own sake. I also believe a collaborative, high-energy team culture is just as important as the technical work itself.
+              </p>
+              <p class="f3 f3-ns lh-copy measure georgia">
+                <em>Random fact about me:</em> I hold a Journeyman&#39;s Certificate in fine woodworking 👨‍🔧 🪑
+              </p>
+          </div>
+
+          <h2 class="f4 fw6 tracked ttu mt4">Leadership &amp; Responsibilities</h2>
           <ul class="f4 lh-copy measure">
             <li>Technical lead and consultant roles across multiple organisations</li>
             <li>Product owner of internal A/B testing platform (SVT)</li>
