@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Jens Tinfors | SoulTrace Results</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
+  <style>
+    .bg-red-soul { background-color: #e53e3e; }
+    .bg-black-soul { background-color: #2d3748; }
+    .bg-blue-soul { background-color: #3182ce; }
+    .bg-green-soul { background-color: #38a169; }
+    .bg-white-soul { background-color: #e2e8f0; }
+
+    .red-soul { color: #e53e3e; }
+    .black-soul { color: #2d3748; }
+    .blue-soul { color: #3182ce; }
+    .green-soul { color: #38a169; }
+    .white-soul { color: #a0aec0; }
+
+    .bar-track {
+      background-color: #edf2f7;
+      border-radius: 4px;
+      overflow: hidden;
+      height: 12px;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 1s ease;
+    }
+    .archetype-badge {
+      display: inline-block;
+      border: 2px solid #e53e3e;
+      border-radius: 4px;
+      padding: 0.25rem 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .match-row {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .match-row:last-child {
+      border-bottom: none;
+    }
+    .strength-item::before {
+      content: '+';
+      color: #38a169;
+      font-weight: 700;
+      margin-right: 0.5rem;
+    }
+    .weakness-item::before {
+      content: '~';
+      color: #e53e3e;
+      font-weight: 700;
+      margin-right: 0.5rem;
+    }
+  </style>
+</head>
+
+<body class="w-100 sans-serif bg-white">
+  <main>
+    <div>
+      <article>
+        <header class="bg-gold sans-serif">
+          <div class="center pa4 ph7-l">
+            <h3 class="bg-black-90 ph3 pv1 tracked-tight f2 f1-m f-headline-l measure-narrow lh-title mv0">
+              <span class="lh-copy white">SoulTrace</span>
+            </h3>
+          </div>
+        </header>
+
+        <div class="pa4 ph7-l georgia mw9-l center">
+
+          <div class="tc mv4">
+            <p class="f6 ttu tracked black-60 mv0">Your Archetype</p>
+            <h1 class="f1 fw6 mv2">The Conqueror</h1>
+            <div class="archetype-badge red-soul ttu f6">Red-Black</div>
+            <p class="f4 black-60 mt3 mb0">Alignment Score: <span class="fw6 black">83.5%</span></p>
+          </div>
+
+          <blockquote class="bl bw2 b--gold pl3 ml0 mt4 mb4">
+            <p class="f3 lh-copy measure georgia">
+              You want a life that feels free, intense, and powerful. When you have a vision for something, you work toward it with passion and strategy. You dislike relying on others, but you are capable of achieving huge goals when you trust the right people. You feel most alive when you are pushing limits, competing, or building something that reflects your ambition.
+            </p>
+          </blockquote>
+
+          <h2 class="f4 fw6 tracked ttu mt5">Color Distribution</h2>
+
+          <div class="mv3">
+            <div class="flex items-center mb3">
+              <span class="f6 fw6 w3 red-soul">Red</span>
+              <div class="bar-track flex-auto mh3">
+                <div class="bar-fill bg-red-soul" style="width: 47.6%"></div>
+              </div>
+              <span class="f6 fw6 w3 tr">47.6%</span>
+            </div>
+            <div class="flex items-center mb3">
+              <span class="f6 fw6 w3 black-soul">Black</span>
+              <div class="bar-track flex-auto mh3">
+                <div class="bar-fill bg-black-soul" style="width: 27.5%"></div>
+              </div>
+              <span class="f6 fw6 w3 tr">27.5%</span>
+            </div>
+            <div class="flex items-center mb3">
+              <span class="f6 fw6 w3 blue-soul">Blue</span>
+              <div class="bar-track flex-auto mh3">
+                <div class="bar-fill bg-blue-soul" style="width: 12.1%"></div>
+              </div>
+              <span class="f6 fw6 w3 tr">12.1%</span>
+            </div>
+            <div class="flex items-center mb3">
+              <span class="f6 fw6 w3 green-soul">Green</span>
+              <div class="bar-track flex-auto mh3">
+                <div class="bar-fill bg-green-soul" style="width: 8.0%"></div>
+              </div>
+              <span class="f6 fw6 w3 tr">8.0%</span>
+            </div>
+            <div class="flex items-center mb3">
+              <span class="f6 fw6 w3 white-soul">White</span>
+              <div class="bar-track flex-auto mh3">
+                <div class="bar-fill bg-white-soul" style="width: 4.7%"></div>
+              </div>
+              <span class="f6 fw6 w3 tr">4.7%</span>
+            </div>
+          </div>
+
+          <h2 class="f4 fw6 tracked ttu mt5">Strengths</h2>
+          <ul class="list pl0 f4 lh-copy measure georgia">
+            <li class="strength-item mb2">Transforms passion into decisive, goal-oriented action faster than anyone in the room</li>
+            <li class="strength-item mb2">Builds freedom through ambition — you refuse to wait for permission or approval</li>
+            <li class="strength-item mb2">Turns personal vision into large-scale impact; you don't just dream big, you make it happen</li>
+            <li class="strength-item mb2">Acts boldly when others hesitate, creating momentum that drags everyone forward</li>
+          </ul>
+
+          <h2 class="f4 fw6 tracked ttu mt5">Weaknesses</h2>
+          <ul class="list pl0 f4 lh-copy measure georgia">
+            <li class="weakness-item mb2">Defaults to extreme self-reliance, convinced that needing anyone is weakness</li>
+            <li class="weakness-item mb2">Struggles to trust others with meaningful responsibility — so you do it all yourself</li>
+            <li class="weakness-item mb2">Gets competitive in situations that call for collaboration, turning partners into rivals</li>
+            <li class="weakness-item mb2">Shrinks your potential impact by refusing to share control or credit</li>
+          </ul>
+
+          <h2 class="f4 fw6 tracked ttu mt5">Top Archetype Matches</h2>
+          <div class="mv3">
+            <div class="match-row flex items-center pv3">
+              <span class="f4 fw6 flex-auto georgia">Conqueror <span class="f6 fw4 black-60">(Red-Black)</span></span>
+              <span class="f4 fw6">83.5%</span>
+            </div>
+            <div class="match-row flex items-center pv3">
+              <span class="f4 fw6 flex-auto georgia">Innovator <span class="f6 fw4 black-60">(Red-Blue)</span></span>
+              <span class="f4 fw6">71.5%</span>
+            </div>
+            <div class="match-row flex items-center pv3">
+              <span class="f4 fw6 flex-auto georgia">Vanguard <span class="f6 fw4 black-60">(Black-Red)</span></span>
+              <span class="f4 fw6">70.8%</span>
+            </div>
+          </div>
+
+          <h2 class="f4 fw6 tracked ttu mt5">Shadow Colors</h2>
+          <p class="f4 lh-copy measure georgia">
+            <span class="fw6 white-soul">White</span> (4.7%) and <span class="fw6 green-soul">Green</span> (8.0%) — structure/order and connection/belonging are your least expressed drives.
+          </p>
+
+          <p class="f4 lh-copy measure b mt5">
+            <a class="link blue" href="https://soultrace.app/en/results/4faaf42d-af5a-4833-b236-3f28ed598ecd">View full results on SoulTrace</a>
+          </p>
+        </div>
+
+        <footer class="pv4 ph3 ph5-ns tc">
+          <a class="link hover-silver near-black dib h2 w2 mr3" href="https://www.linkedin.com/in/jenstinfors/" title="LinkedIn">
+            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+              <path d="M13.632 13.635h-2.37V9.922c0-.886-.018-2.025-1.234-2.025-1.235 0-1.424.964-1.424 1.96v3.778h-2.37V6H8.51V7.04h.03c.318-.6 1.092-1.233 2.247-1.233 2.4 0 2.845 1.58 2.845 3.637v4.188zM3.558 4.955c-.762 0-1.376-.617-1.376-1.377 0-.758.614-1.375 1.376-1.375.76 0 1.376.617 1.376 1.375 0 .76-.617 1.377-1.376 1.377zm1.188 8.68H2.37V6h2.376v7.635zM14.816 0H1.18C.528 0 0 .516 0 1.153v13.694C0 15.484.528 16 1.18 16h13.635c.652 0 1.185-.516 1.185-1.153V1.153C16 .516 15.467 0 14.815 0z" fill-rule="nonzero" />
+            </svg>
+          </a>
+          <a class="link near-black hover-silver dib h2 w2 mr3" href="https://github.com/jtinfors" title="GitHub">
+            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+              <path d="M8 0C3.58 0 0 3.582 0 8c0 3.535 2.292 6.533 5.47 7.59.4.075.547-.172.547-.385 0-.19-.007-.693-.01-1.36-2.226.483-2.695-1.073-2.695-1.073-.364-.924-.89-1.17-.89-1.17-.725-.496.056-.486.056-.486.803.056 1.225.824 1.225.824.714 1.223 1.873.87 2.33.665.072-.517.278-.87.507-1.07-1.777-.2-3.644-.888-3.644-3.953 0-.873.31-1.587.823-2.147-.083-.202-.358-1.015.077-2.117 0 0 .672-.215 2.2.82.638-.178 1.323-.266 2.003-.27.68.004 1.364.092 2.003.27 1.527-1.035 2.198-.82 2.198-.82.437 1.102.163 1.915.08 2.117.513.56.823 1.274.823 2.147 0 3.073-1.87 3.75-3.653 3.947.287.246.543.735.543 1.48 0 1.07-.01 1.933-.01 2.195 0 .215.144.463.55.385C13.71 14.53 16 11.534 16 8c0-4.418-3.582-8-8-8" />
+            </svg>
+          </a>
+        </footer>
+      </article>
+    </div>
+  </main>
+</body>
+
+</html>
