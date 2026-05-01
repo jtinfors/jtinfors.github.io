@@ -1,406 +1,589 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jens Tinfors | Senior Fullstack Developer</title>
-  <meta http-equiv="Content-Security-Policy" nonce="2726c7f26c" script-src="self" />
-  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --paper:  #EDE5D4;
+      --ink:    #0E0D0B;
+      --red:    #C9271A;
+      --muted:  #7A6F60;
+      --rule:   2px solid #0E0D0B;
+      --rule-heavy: 5px solid #0E0D0B;
+    }
+
+    html {
+      background: var(--ink);
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Mono', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0;
+      position: relative;
+    }
+
+    /* ── GRAIN OVERLAY ── */
+    body::after {
+      content: '';
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      z-index: 9999;
+    }
+
+    /* ── RED LEFT STRIPE ── */
+    .page-wrap {
+      border-left: 6px solid var(--red);
+      padding: 0 48px 0 42px;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--rule);
+      padding: 11px 0;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .topbar .dot {
+      color: var(--red);
+      margin: 0 6px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 28px 0 0;
+    }
+
+    .name-block {
+      font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+      line-height: 0.86;
+      letter-spacing: 0.01em;
+    }
+
+    .name-first {
+      font-size: clamp(80px, 16vw, 160px);
+      display: block;
+      color: var(--ink);
+    }
+
+    .name-last {
+      font-size: clamp(80px, 16vw, 160px);
+      display: block;
+      color: var(--red);
+    }
+
+    .header-rule {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-top: var(--rule-heavy);
+      border-bottom: var(--rule);
+      margin-top: 14px;
+      padding: 10px 0;
+      gap: 16px;
+    }
+
+    .header-role {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(20px, 3.5vw, 32px);
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    .header-meta {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    /* ── BIO ── */
+    .bio {
+      padding: 44px 0;
+      border-bottom: var(--rule);
+    }
+
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 1fr 190px;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .bio-text p {
+      font-size: 14px;
+      line-height: 1.8;
+      margin-bottom: 14px;
+      max-width: 58ch;
+    }
+    .bio-text p:last-child { margin-bottom: 0; }
+
+    .bio-photo-wrap {
+      position: sticky;
+      top: 24px;
+    }
+
+    .bio-photo-label {
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 5px 8px;
+      text-align: center;
+    }
+
+    .bio-photo-wrap img {
+      width: 100%;
+      display: block;
+      border: var(--rule);
+      border-top: none;
+      filter: grayscale(15%) contrast(1.05);
+    }
+
+    .bio-photo-caption {
+      border: var(--rule);
+      border-top: none;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      padding: 5px 8px;
+      text-transform: uppercase;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 38px;
+      letter-spacing: 0.04em;
+      margin-bottom: 18px;
+    }
+
+    /* ── LEADERSHIP ── */
+    .leadership {
+      padding: 44px 0;
+      border-bottom: var(--rule);
+    }
+
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+    }
+
+    .leadership-item {
+      padding: 11px 12px 11px 0;
+      border-bottom: 1px solid rgba(14,13,11,0.2);
+      font-size: 13px;
+      line-height: 1.5;
+      display: flex;
+      gap: 8px;
+    }
+
+    .leadership-item::before {
+      content: '→';
+      color: var(--red);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .cta {
+      margin-top: 24px;
+      font-size: 13px;
+    }
+
+    .cta a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 2px solid var(--red);
+      padding-bottom: 1px;
+    }
+
+    .cta a:hover {
+      background: var(--red);
+      color: var(--paper);
+    }
+
+    /* ── CV ── */
+    .cv {
+      padding: 44px 0 0;
+    }
+
+    .cv-list {
+      margin-top: 4px;
+    }
+
+    .cv-entry {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 0 28px;
+      border-bottom: 1px solid rgba(14,13,11,0.18);
+      padding: 22px 0;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+    }
+
+    .cv-entry::before {
+      content: '';
+      position: absolute;
+      left: -48px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: transparent;
+      transition: background 0.12s;
+    }
+
+    .cv-entry:hover::before {
+      background: var(--red);
+    }
+
+    .cv-entry:hover {
+      background: rgba(201,39,26,0.03);
+    }
+
+    .cv-year {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      color: var(--muted);
+      padding-top: 6px;
+      line-height: 1.1;
+    }
+
+    .cv-year-current {
+      color: var(--red);
+    }
+
+    .cv-body {}
+
+    .cv-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 7px;
+    }
+
+    .cv-logo {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+      flex-shrink: 0;
+      filter: grayscale(100%) contrast(0.75);
+      opacity: 0.65;
+    }
+
+    .cv-company {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+
+    .cv-desc {
+      font-size: 12.5px;
+      line-height: 1.75;
+      color: #3A3630;
+      max-width: 68ch;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: var(--rule-heavy);
+      margin-top: 48px;
+      padding: 28px 0 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-left {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      transition: color 0.12s;
+      display: block;
+    }
+
+    .footer-links a:hover {
+      color: var(--ink);
+    }
+
+    .footer-links svg,
+    .footer-links img {
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .page-wrap {
+        padding: 0 20px 0 18px;
+      }
+      .bio-grid {
+        grid-template-columns: 1fr;
+      }
+      .bio-photo-wrap {
+        max-width: 150px;
+        position: static;
+      }
+      .leadership-grid {
+        grid-template-columns: 1fr;
+      }
+      .cv-entry {
+        grid-template-columns: 72px 1fr;
+        gap: 0 16px;
+      }
+      .cv-entry::before {
+        left: -24px;
+      }
+      .header-rule {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+      .header-meta { text-align: left; }
+    }
+
+  </style>
 </head>
+<body>
+  <div class="page-wrap">
 
-<body class="w-100 sans-serif bg-white">
-  <main>
-    <div>
-      <article>
-        <header class="bg-gold sans-serif">
-          <div class="center pa4 ph7-l">
-            <h3 class="bg-black-90 ph3 pv1 tracked-tight pointer f2 f1-m f-headline-l measure-narrow lh-title mv0">
-              <span class="lh-copy white" id="heading"></span>
-              <span class="blink font-light white">|</span>
-            </h3>
-          </div>
-        </header>
-
-        <style>
-          .intro-photo {
-            float: right;
-            width: 30%;
-            max-width: 220px;
-            min-width: 120px;
-            margin: 0 0 1rem 1.5rem;
-            border-radius: 4px;
-            overflow: hidden;
-          }
-          .intro-photo img {
-            width: 100%;
-            display: block;
-          }
-          .intro-clearfix::after {
-            content: '';
-            display: table;
-            clear: both;
-          }
-        </style>
-
-        <div class="pa4 ph7-l georgia mw9-l center">
-          <div class="intro-clearfix">
-            <div class="intro-photo">
-              <img src="images/jens.png" alt="Jens Tinfors" />
-            </div>
-              <p class="f3 f3-ns lh-copy measure georgia">
-                Hi! I&#39;m Jens Tinfors, a senior fullstack developer based in Sweden with 25+ years of experience building production systems — from startups to platforms used by millions.
-              </p>
-              <p class="f3 f3-ns lh-copy measure georgia">
-                My core expertise is React, Next.js and JavaScript, as well as mobile development with SwiftUI and Jetpack Compose. A strong sense of ownership and curiosity for the full product consistently draws me across the entire tech stack <i>(see Curriculum Vitae below)</i>.
-              </p>
-              <p class="f3 f3-ns lh-copy measure georgia">
-                I prioritize pragmatic, maintainable solutions that deliver value quickly. End-user outcomes matter more than technical elegance for its own sake. I also believe a collaborative, high-energy team culture is just as important as the technical work itself.
-              </p>
-              <p class="f3 f3-ns lh-copy measure georgia">
-                <em>Random fact about me:</em> I hold a Journeyman&#39;s Certificate in fine woodworking 👨‍🔧 🪑
-              </p>
-          </div>
-
-          <h2 class="f4 fw6 tracked ttu mt4">Leadership &amp; Responsibilities</h2>
-          <ul class="f4 lh-copy measure">
-            <li>Technical lead and consultant roles across multiple organisations</li>
-            <li>Product owner of internal A/B testing platform (SVT)</li>
-            <li>Full lifecycle development — backend, frontend, and mobile</li>
-            <li>Cross-functional collaboration across design, product, and engineering</li>
-          </ul>
-
-          <p class="f4 lh-copy measure b">
-            Available for consulting engagements — <a href="https://www.linkedin.com/in/jenstinfors/">let&#39;s talk</a>.
-          </p>
-
-          <h2 id="cv">Curriculum Vitae</h2>
-
-          <article>
-            <a class="link dt w-100 bb b--black-10 pb2 mt2 dim blue" href="https://svtplay.se">
-              <div class="dtc w3">
-                <img src="images/svtplay.png" class="db w-100" />
-              </div>
-              <div class="dtc v-top pl2">
-                <h1 class="f6 f5-ns fw6 lh-title black mv0">
-                  SVT Play
-                </h1>
-                <h2 class="f6 fw4 mt2 mb0 black-60">
-                  App developer of SVT Play, leveraging AI as an integrated part of the development workflow.
-                  Product owner of internal A/B testing tool.
-                  Tech stack includes but is not limited to: iOS development using SwiftUI, Android development using Jetpack Compose.
-                </h2>
-                <dl class="mt2 f6">
-                  <dt class="clip">span</dt>
-                  <dd class="ml0">2025 - (ongoing)</dd>
-                </dl>
-              </div>
-            </a>
-          </article>
-
-          <article>
-            <a class="link dt w-100 bb b--black-10 pb2 mt2 dim blue" href="https://svtbarn.se">
-              <div class="dtc w3">
-                <img src="images/svtbarn.png" class="db w-100" />
-              </div>
-              <div class="dtc v-top pl2">
-                <h1 class="f6 f5-ns fw6 lh-title black mv0">
-                  SVT Barn
-                </h1>
-                <h2 class="f6 fw4 mt2 mb0 black-60">
-                  Senior fullstack developer at SVT Barn for 7+ years, building streaming features for one of Sweden's most-used children's platforms.
-                  Product owner of an internal A/B testing tool adopted across SVT.
-                  Stack: React, CSS Modules, Akamai, iOS (Swift), and Android (Kotlin).
-                </h2>
-                <dl class="mt2 f6">
-                  <dt class="clip">span</dt>
-                  <dd class="ml0">2017 - 2024</dd>
-                </dl>
-              </div>
-            </a>
-          </article>
-
-          <article>
-            <a class="link dt w-100 bb b--black-10 pb2 mt2 dim blue" href="https://www.beamonpeople.se/">
-              <div class="dtc w3">
-                <img src="images/beamon.png" class="db w-100" />
-              </div>
-              <div class="dtc v-top pl2">
-                <h1 class="f6 f5-ns fw6 lh-title black mv0">Beamon People</h1>
-                <h2 class="f6 fw4 mt2 mb0 black-60">
-                  Technical consultant and team lead, driving delivery across client engagements.
-                </h2>
-                <dl class="mt2 f6">
-                  <dt class="clip">span</dt>
-                  <dd class="ml0">2016 - 2017</dd>
-                </dl>
-              </div>
-            </a>
-          </article>
-
-          <article>
-            <a class="link dt w-100 bb b--black-10 pb2 mt2 dim blue" href="https://digital.polygongroup.com/">
-              <div class="dtc w3">
-                <img src="images/hiot.png" class="db w-100" />
-              </div>
-              <div class="dtc v-top pl2">
-                <h1 class="f6 f5-ns fw6 lh-title black mv0">HIOT Labs / Polygongroup</h1>
-                <h2 class="f6 fw4 mt2 mb0 black-60">
-                  Full system ownership at an IoT startup — designed and built an end-to-end platform for detecting water leaks and preventing property damage.
-                  Covered the entire stack: time-series databases, APIs, web app, and iOS/Android apps via React Native. Node.js, React, socket.io.
-                </h2>
-                <dl class="mt2 f6">
-                  <dt class="clip">span</dt>
-                  <dd class="ml0">2016</dd>
-                </dl>
-              </div>
-            </a>
-          </article>
-
-          <article>
-            <a class="link dt w-100 bb b--black-10 pb2 mt2 dim blue" href="https://www.hemnet.se/">
-              <div class="dtc w3">
-                <img src="images/hemnet.png" class="db w-100" />
-              </div>
-              <div class="dtc v-top pl2">
-                <h1 class="f6 f5-ns fw6 lh-title black mv0">Hemnet</h1>
-                <h2 class="f6 fw4 mt2 mb0 black-60">
-                  Replaced a legacy data visualisation product with a custom solution, delivering statistical property data to users via Chart.js, React, CSS Modules, and Ruby on Rails.
-                </h2>
-                <dl class="mt2 f6">
-                  <dt class="clip">span</dt>
-                  <dd class="ml0">2016</dd>
-                </dl>
-              </div>
-            </a>
-          </article>
-
-          <article>
-            <a class="link dt w-100 bb b--black-10 pb2 mt2 dim blue" href="https://viaplay.se/">
-              <div class="dtc w3">
-                <img src="images/viaplay.png" class="db w-100" />
-              </div>
-              <div class="dtc v-top pl2">
-                <h1 class="f6 f5-ns fw6 lh-title black mv0">Viaplay</h1>
-                <h2 class="f6 fw4 mt2 mb0 black-60">
-                  Built and maintained frontend and backend systems for one of Scandinavia's leading streaming platforms. Node.js, JavaScript, CSS.
-                </h2>
-                <dl class="mt2 f6">
-                  <dt class="clip">span</dt>
-                  <dd class="ml0">2014 - 2015</dd>
-                </dl>
-              </div>
-            </a>
-          </article>
-
-          <article>
-            <a class="link dt w-100 bb b--black-10 pb2 mt2 dim blue" href="https://www.kb.se/">
-              <div class="dtc w3">
-                <img src="images/kb.png" class="db w-100" />
-              </div>
-              <div class="dtc v-top pl2">
-                <h1 class="f6 f5-ns fw6 lh-title black mv0">
-                  Kungliga Biblioteket (Royal Swedish Library)
-                </h1>
-                <h2 class="f6 fw4 mt2 mb0 black-60">
-                  Built the internal Libris CMS and supporting web apps for Sweden's national library. Python, Flask, Django.
-                </h2>
-                <dl class="mt2 f6">
-                  <dt class="clip">span</dt>
-                  <dd class="ml0">2013</dd>
-                </dl>
-              </div>
-            </a>
-          </article>
-
-          <article>
-            <a class="link dt w-100 bb b--black-10 pb2 mt2 dim blue" href="https://www.antagning.se/">
-              <div class="dtc w3">
-                <img src="images/uhr.png" class="db w-100" />
-              </div>
-              <div class="dtc v-top pl2">
-                <h1 class="f6 f5-ns fw6 lh-title black mv0">Antagning.se</h1>
-                <h2 class="f6 fw4 mt2 mb0 black-60">
-                  Rebuilt Sweden's national university admissions platform from the ground up. Java, JavaScript, CSS.
-                </h2>
-                <dl class="mt2 f6">
-                  <dt class="clip">span</dt>
-                  <dd class="ml0">2012</dd>
-                </dl>
-              </div>
-            </a>
-          </article>
-
-          <article>
-            <a class="link dt w-100 bb b--black-10 pb2 mt2 dim blue" href="https://www.sll.se/">
-              <div class="dtc w3">
-                <img src="images/sll.png" class="db w-100" />
-              </div>
-              <div class="dtc v-top pl2">
-                <h1 class="f6 f5-ns fw6 lh-title black mv0">
-                  SLL (Stockholm Healthcare)
-                </h1>
-                <h2 class="f6 fw4 mt2 mb0 black-60">
-                  Commissioned for a pre-study; delivered a fully working realtime collaboration web app instead.
-                  Ruby on Rails, weekly sprint cadence with stakeholder demos.
-                </h2>
-                <dl class="mt2 f6">
-                  <dt class="clip">span</dt>
-                  <dd class="ml0">2011</dd>
-                </dl>
-              </div>
-            </a>
-          </article>
-
-          <article>
-            <a class="link dt w-100 bb b--black-10 pb2 mt2 dim blue" href="https://lnu.se/">
-              <div class="dtc w3">
-                <img src="images/lnu.png" class="db w-100" />
-              </div>
-              <div class="dtc v-top pl2">
-                <h1 class="f6 f5-ns fw6 lh-title black mv0">
-                  Linnaeus University
-                </h1>
-                <h2 class="f6 fw4 mt2 mb0 black-60">
-                  Built and maintained the public website, intranet, and student platform for Linnaeus University across a broad technology stack: Ruby on Rails, Java/Spring, JavaScript, CSS, MySQL, hosted on Ubuntu servers.
-                </h2>
-                <dl class="mt2 f6">
-                  <dt class="clip">span</dt>
-                  <dd class="ml0">2007 - 2011</dd>
-                </dl>
-              </div>
-            </a>
-          </article>
-
-          <article>
-            <a class="link dt w-100 bb b--black-10 pb2 mt2 dim blue" href="https://www.ericsson.com/">
-              <div class="dtc w3">
-                <img src="images/ericsson.png" class="db w-100" />
-              </div>
-              <div class="dtc v-top pl2">
-                <h1 class="f6 f5-ns fw6 lh-title black mv0">Ericsson</h1>
-                <h2 class="f6 fw4 mt2 mb0 black-60">
-                  Seven-year tenure spanning developer, tester, team lead, and sourcing engineer roles.
-                  Delivered custom hardware and software solutions for global customers, including international on-site installations.
-                </h2>
-                <dl class="mt2 f6">
-                  <dt class="clip">span</dt>
-                  <dd class="ml0">1999 - 2007</dd>
-                </dl>
-              </div>
-            </a>
-          </article>
-        </div>
-
-        <footer class="pv4 ph3 ph5-ns tc">
-          <a class="link hover-silver near-black dib h2 w2 mr3" href="https://foretagsinfo.bolagsverket.se/sok-foretagsinformation-web/foretag/5591819361/foretagsform/AB"
-            title="Mosshoken Labs AB at Bolagsverket">
-            <img src="images/mosshoken.png">
-          </a>
-          <a class="link hover-silver near-black dib h2 w2 mr3" href="https://www.linkedin.com/in/jenstinfors/"
-            title="LinkedIn">
-            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill-rule="evenodd"
-              clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
-              <path
-                d="M13.632 13.635h-2.37V9.922c0-.886-.018-2.025-1.234-2.025-1.235 0-1.424.964-1.424 1.96v3.778h-2.37V6H8.51V7.04h.03c.318-.6 1.092-1.233 2.247-1.233 2.4 0 2.845 1.58 2.845 3.637v4.188zM3.558 4.955c-.762 0-1.376-.617-1.376-1.377 0-.758.614-1.375 1.376-1.375.76 0 1.376.617 1.376 1.375 0 .76-.617 1.377-1.376 1.377zm1.188 8.68H2.37V6h2.376v7.635zM14.816 0H1.18C.528 0 0 .516 0 1.153v13.694C0 15.484.528 16 1.18 16h13.635c.652 0 1.185-.516 1.185-1.153V1.153C16 .516 15.467 0 14.815 0z"
-                fill-rule="nonzero" />
-            </svg>
-          </a>
-          <a class="link near-black hover-silver dib h2 w2 mr3" href="https://github.com/jtinfors" title="GitHub">
-            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill-rule="evenodd"
-              clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
-              <path
-                d="M8 0C3.58 0 0 3.582 0 8c0 3.535 2.292 6.533 5.47 7.59.4.075.547-.172.547-.385 0-.19-.007-.693-.01-1.36-2.226.483-2.695-1.073-2.695-1.073-.364-.924-.89-1.17-.89-1.17-.725-.496.056-.486.056-.486.803.056 1.225.824 1.225.824.714 1.223 1.873.87 2.33.665.072-.517.278-.87.507-1.07-1.777-.2-3.644-.888-3.644-3.953 0-.873.31-1.587.823-2.147-.083-.202-.358-1.015.077-2.117 0 0 .672-.215 2.2.82.638-.178 1.323-.266 2.003-.27.68.004 1.364.092 2.003.27 1.527-1.035 2.198-.82 2.198-.82.437 1.102.163 1.915.08 2.117.513.56.823 1.274.823 2.147 0 3.073-1.87 3.75-3.653 3.947.287.246.543.735.543 1.48 0 1.07-.01 1.933-.01 2.195 0 .215.144.463.55.385C13.71 14.53 16 11.534 16 8c0-4.418-3.582-8-8-8" />
-            </svg>
-          </a>
-        </footer>
-      </article>
+    <div class="topbar">
+      <span>Tinfors Creative AB<span class="dot">◆</span>Jens Tinfors</span>
+      <span>jenstinfors.com</span>
     </div>
-  </main>
-  <script nonce="2726c7f26c">
-    let handle;
 
-    function shuffle(array) {
-      let currentIndex = array.length, randomIndex;
-      // While there remain elements to shuffle.
-      while (currentIndex > 0) {
-        // Pick a remaining element.
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-        // And swap it with the current element.
-        [array[currentIndex], array[randomIndex]] = [
-          array[randomIndex], array[currentIndex]];
-      }
-      return array;
-    }
-    var buzzwords = shuffle([
-      'React',
-      'Next.js',
-      'SwiftUI',
-      'Jetpack Compose',
-      'Node.js',
-      'TypeScript',
-      'Full Stack Development',
-      'Product Ownership',
-      'A/B Testing',
-      'Streaming Platforms',
-      'CSS Modules',
-      'Ruby on Rails',
-      'System Architecture',
-      'Mobile Development',
-      'API Design',
-      'Team Leadership',
-      'IoT Systems',
-      'Agile Development',
-      'React Native',
-      'Python & Django',
-      'AI-assisted Development',
-      'Performance Optimisation',
-      'Cross-platform Apps',
-      '25+ Years Experience',
-    ]);
+    <header>
+      <div class="name-block">
+        <span class="name-first">JENS</span>
+        <span class="name-last">TINFORS</span>
+      </div>
+      <div class="header-rule">
+        <div class="header-role">Senior Fullstack Developer</div>
+        <div class="header-meta">
+          Sweden&nbsp;// 25+ Years<br>
+          Available for consulting
+        </div>
+      </div>
+    </header>
 
-    const startBlink = function () {
-      const blink = document.querySelector(".blink");
-      handle = setInterval(() => {
-        blink.style.visibility = blink.style.visibility === 'hidden' ? 'visible' : 'hidden';
-      }, 500)
-    }
-    const stopBlink = function () {
-      const blink = document.querySelector(".blink");
-      blink.style.visibility = 'visible';
-      clearInterval(handle);
-    }
+    <section class="bio">
+      <div class="bio-grid">
+        <div class="bio-text">
+          <p>Hi! I'm Jens Tinfors, a senior fullstack developer based in Sweden with 25+ years of experience building production systems — from startups to platforms used by millions.</p>
+          <p>My core expertise is React, Next.js and JavaScript, as well as mobile development with SwiftUI and Jetpack Compose. A strong sense of ownership and curiosity for the full product consistently draws me across the entire tech stack.</p>
+          <p>I prioritize pragmatic, maintainable solutions that deliver value quickly. End-user outcomes matter more than technical elegance for its own sake. I also believe a collaborative, high-energy team culture is just as important as the technical work itself.</p>
+          <p><em>Random fact:</em> I hold a Journeyman's Certificate in fine woodworking 👨‍🔧 🪑</p>
+        </div>
+        <div class="bio-photo-wrap">
+          <div class="bio-photo-label">Jens Tinfors</div>
+          <img src="images/jens.png" alt="Jens Tinfors">
+          <div class="bio-photo-caption">Sweden // Developer</div>
+        </div>
+      </div>
+    </section>
 
-    async function replaceHeader() {
-      const heading = document.getElementById("heading");
-      const current = heading.innerText;
-      const next = buzzwords[(buzzwords.indexOf(current) + 1) % buzzwords.length];
-      const CHAR_DELAY = 40;
-      const WORD_DELAY = 2300;
+    <section class="leadership">
+      <div class="section-label">Leadership &amp; Responsibilities</div>
+      <div class="leadership-grid">
+        <div class="leadership-item">Technical lead and consultant roles across multiple organisations</div>
+        <div class="leadership-item">Product owner of internal A/B testing platform (SVT)</div>
+        <div class="leadership-item">Full lifecycle development — backend, frontend, and mobile</div>
+        <div class="leadership-item">Cross-functional collaboration across design, product, and engineering</div>
+      </div>
+      <p class="cta">Available for consulting engagements — <a href="https://www.linkedin.com/in/jenstinfors/">let's talk</a>.</p>
+    </section>
 
-      stopBlink()
+    <section class="cv">
+      <div class="section-label">Curriculum Vitae</div>
+      <div class="cv-list">
 
-      while (heading.innerText.length > 0) {
-        heading.innerText = heading.innerText.slice(0, -1);
-        await new Promise((resolve) => setTimeout(resolve, CHAR_DELAY))
-      }
+        <a class="cv-entry" href="https://svtplay.se">
+          <div class="cv-year cv-year-current">2025<br>—</div>
+          <div class="cv-body">
+            <div class="cv-head">
+              <img class="cv-logo" src="images/svtplay.png" alt="">
+              <span class="cv-company">SVT Play</span>
+            </div>
+            <p class="cv-desc">App developer of SVT Play, leveraging AI as an integrated part of the development workflow. Product owner of internal A/B testing tool. iOS development using SwiftUI, Android development using Jetpack Compose.</p>
+          </div>
+        </a>
 
-      for (let i = 0; i < next.length; i++) {
-        heading.innerText += next[i];
-        await new Promise((resolve) => setTimeout(resolve, CHAR_DELAY))
-      }
+        <a class="cv-entry" href="https://svtbarn.se">
+          <div class="cv-year">2017<br>– 2024</div>
+          <div class="cv-body">
+            <div class="cv-head">
+              <img class="cv-logo" src="images/svtbarn.png" alt="">
+              <span class="cv-company">SVT Barn</span>
+            </div>
+            <p class="cv-desc">Senior fullstack developer for 7+ years, building streaming features for one of Sweden's most-used children's platforms. Product owner of an internal A/B testing tool adopted across SVT. Stack: React, CSS Modules, Akamai, iOS (Swift), Android (Kotlin).</p>
+          </div>
+        </a>
 
-      startBlink()
-      await new Promise((resolve) => setTimeout(resolve, WORD_DELAY))
-      replaceHeader()
-    }
+        <a class="cv-entry" href="https://www.beamonpeople.se/">
+          <div class="cv-year">2016<br>– 2017</div>
+          <div class="cv-body">
+            <div class="cv-head">
+              <img class="cv-logo" src="images/beamon.png" alt="">
+              <span class="cv-company">Beamon People</span>
+            </div>
+            <p class="cv-desc">Technical consultant and team lead, driving delivery across client engagements.</p>
+          </div>
+        </a>
 
-    startBlink()
-    setTimeout(() => {
-      replaceHeader()
-    }, 4000)
-  </script>
+        <a class="cv-entry" href="https://digital.polygongroup.com/">
+          <div class="cv-year">2016</div>
+          <div class="cv-body">
+            <div class="cv-head">
+              <img class="cv-logo" src="images/hiot.png" alt="">
+              <span class="cv-company">HIOT Labs / Polygongroup</span>
+            </div>
+            <p class="cv-desc">Full system ownership at an IoT startup — designed and built an end-to-end platform for detecting water leaks and preventing property damage. Entire stack: time-series databases, APIs, web app, iOS/Android via React Native. Node.js, React, socket.io.</p>
+          </div>
+        </a>
+
+        <a class="cv-entry" href="https://www.hemnet.se/">
+          <div class="cv-year">2016</div>
+          <div class="cv-body">
+            <div class="cv-head">
+              <img class="cv-logo" src="images/hemnet.png" alt="">
+              <span class="cv-company">Hemnet</span>
+            </div>
+            <p class="cv-desc">Replaced a legacy data visualisation product with a custom solution, delivering statistical property data to users via Chart.js, React, CSS Modules, and Ruby on Rails.</p>
+          </div>
+        </a>
+
+        <a class="cv-entry" href="https://viaplay.se/">
+          <div class="cv-year">2014<br>– 2015</div>
+          <div class="cv-body">
+            <div class="cv-head">
+              <img class="cv-logo" src="images/viaplay.png" alt="">
+              <span class="cv-company">Viaplay</span>
+            </div>
+            <p class="cv-desc">Built and maintained frontend and backend systems for one of Scandinavia's leading streaming platforms. Node.js, JavaScript, CSS.</p>
+          </div>
+        </a>
+
+        <a class="cv-entry" href="https://www.kb.se/">
+          <div class="cv-year">2013</div>
+          <div class="cv-body">
+            <div class="cv-head">
+              <img class="cv-logo" src="images/kb.png" alt="">
+              <span class="cv-company">Kungliga Biblioteket</span>
+            </div>
+            <p class="cv-desc">Built the internal Libris CMS and supporting web apps for Sweden's national library. Python, Flask, Django.</p>
+          </div>
+        </a>
+
+        <a class="cv-entry" href="https://www.antagning.se/">
+          <div class="cv-year">2012</div>
+          <div class="cv-body">
+            <div class="cv-head">
+              <img class="cv-logo" src="images/uhr.png" alt="">
+              <span class="cv-company">Antagning.se</span>
+            </div>
+            <p class="cv-desc">Rebuilt Sweden's national university admissions platform from the ground up. Java, JavaScript, CSS.</p>
+          </div>
+        </a>
+
+        <a class="cv-entry" href="https://www.sll.se/">
+          <div class="cv-year">2011</div>
+          <div class="cv-body">
+            <div class="cv-head">
+              <img class="cv-logo" src="images/sll.png" alt="">
+              <span class="cv-company">SLL Stockholm Healthcare</span>
+            </div>
+            <p class="cv-desc">Commissioned for a pre-study; delivered a fully working realtime collaboration web app instead. Ruby on Rails, weekly sprint cadence with stakeholder demos.</p>
+          </div>
+        </a>
+
+        <a class="cv-entry" href="https://lnu.se/">
+          <div class="cv-year">2007<br>– 2011</div>
+          <div class="cv-body">
+            <div class="cv-head">
+              <img class="cv-logo" src="images/lnu.png" alt="">
+              <span class="cv-company">Linnaeus University</span>
+            </div>
+            <p class="cv-desc">Built and maintained the public website, intranet, and student platform. Ruby on Rails, Java/Spring, JavaScript, CSS, MySQL, Ubuntu servers.</p>
+          </div>
+        </a>
+
+        <a class="cv-entry" href="https://www.ericsson.com/">
+          <div class="cv-year">1999<br>– 2007</div>
+          <div class="cv-body">
+            <div class="cv-head">
+              <img class="cv-logo" src="images/ericsson.png" alt="">
+              <span class="cv-company">Ericsson</span>
+            </div>
+            <p class="cv-desc">Seven-year tenure spanning developer, tester, team lead, and sourcing engineer roles. Delivered custom hardware and software solutions for global customers, including international on-site installations.</p>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-left">
+        © Tinfors Creative AB<br>
+        jens.tinfors@gmail.com
+      </div>
+      <div class="footer-links">
+        <a href="https://foretagsinfo.bolagsverket.se/sok-foretagsinformation-web/foretag/5591819361/foretagsform/AB" title="Tinfors Creative AB at Bolagsverket">
+          <img src="images/mosshoken.png" alt="Tinfors Creative AB">
+        </a>
+        <a href="https://www.linkedin.com/in/jenstinfors/" title="LinkedIn">
+          <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+            <path d="M13.632 13.635h-2.37V9.922c0-.886-.018-2.025-1.234-2.025-1.235 0-1.424.964-1.424 1.96v3.778h-2.37V6H8.51V7.04h.03c.318-.6 1.092-1.233 2.247-1.233 2.4 0 2.845 1.58 2.845 3.637v4.188zM3.558 4.955c-.762 0-1.376-.617-1.376-1.377 0-.758.614-1.375 1.376-1.375.76 0 1.376.617 1.376 1.375 0 .76-.617 1.377-1.376 1.377zm1.188 8.68H2.37V6h2.376v7.635zM14.816 0H1.18C.528 0 0 .516 0 1.153v13.694C0 15.484.528 16 1.18 16h13.635c.652 0 1.185-.516 1.185-1.153V1.153C16 .516 15.467 0 14.815 0z"/>
+          </svg>
+        </a>
+        <a href="https://github.com/jtinfors" title="GitHub">
+          <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+            <path d="M8 0C3.58 0 0 3.582 0 8c0 3.535 2.292 6.533 5.47 7.59.4.075.547-.172.547-.385 0-.19-.007-.693-.01-1.36-2.226.483-2.695-1.073-2.695-1.073-.364-.924-.89-1.17-.89-1.17-.725-.496.056-.486.056-.486.803.056 1.225.824 1.225.824.714 1.223 1.873.87 2.33.665.072-.517.278-.87.507-1.07-1.777-.2-3.644-.888-3.644-3.953 0-.873.31-1.587.823-2.147-.083-.202-.358-1.015.077-2.117 0 0 .672-.215 2.2.82.638-.178 1.323-.266 2.003-.27.68.004 1.364.092 2.003.27 1.527-1.035 2.198-.82 2.198-.82.437 1.102.163 1.915.08 2.117.513.56.823 1.274.823 2.147 0 3.073-1.87 3.75-3.653 3.947.287.246.543.735.543 1.48 0 1.07-.01 1.933-.01 2.195 0 .215.144.463.55.385C13.71 14.53 16 11.534 16 8c0-4.418-3.582-8-8-8"/>
+          </svg>
+        </a>
+      </div>
+    </footer>
+
+  </div><!-- .page-wrap -->
+
 </body>
-
 </html>
