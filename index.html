@@ -474,12 +474,12 @@
   <div class="folio">
     <span class="folio-left">Portfolio &amp; Curriculum Vitae</span>
     <span class="folio-center">A profile in technology &amp; craft</span>
-    <span class="folio-right">May 2026</span>
+    <span class="folio-right" id="current-date"></span>
   </div>
 
   <!-- ── MASTHEAD ── -->
   <header class="masthead">
-    <p class="masthead-kicker">Senior Fullstack Developer · Sweden</p>
+    <p class="masthead-kicker">Senior Fullstack &amp; AI Developer · Sweden</p>
     <div class="masthead-name">JENS <em>TINFORS</em></div>
     <div class="masthead-rule">
       <div class="masthead-rule-inner">
@@ -499,9 +499,9 @@
     <div class="feature-layout">
 
       <div class="feature-body">
-        <p>Hi! I'm Jens Tinfors, a senior fullstack developer based in Sweden with 25+ years of experience building production systems — from startups to platforms used by millions.</p>
+        <p>Hi! I'm Jens Tinfors, a senior fullstack AI developer based in Sweden with 25+ years of experience building production systems — from startups to platforms used by millions.</p>
         <p>My core expertise is React, Next.js and JavaScript, as well as mobile development with SwiftUI and Jetpack Compose. A strong sense of ownership and curiosity for the full product consistently draws me across the entire tech stack.</p>
-        <p>I prioritize pragmatic, maintainable solutions that deliver value quickly. End-user outcomes matter more than technical elegance for its own sake. I also believe a collaborative, high-energy team culture is just as important as the technical work itself.</p>
+        <p>I prioritize pragmatic, maintainable solutions that deliver value quickly. End-user outcomes matter more than technical elegance. I also believe a collaborative, high-energy team culture is just as important as the technical work itself.</p>
         <p><em>Random fact:</em> I hold a Journeyman's Certificate in fine woodworking 👨‍🔧 🪑</p>
       </div>
 
@@ -513,10 +513,6 @@
           </div>
           <img src="images/jens.png" alt="Jens Tinfors">
           <p class="portrait-caption">Developer, consultant, and journeyman woodworker. Based in Sweden.</p>
-        </div>
-        <div class="pull-quote">
-          <blockquote>"End-user outcomes matter more than technical elegance for its own sake."</blockquote>
-          <cite>— Jens Tinfors</cite>
         </div>
       </div>
 
@@ -550,7 +546,7 @@
         <img class="cv-logo" src="images/svtplay.png" alt="">
         <div>
           <div class="cv-company">SVT Play</div>
-          <p class="cv-desc">App developer of SVT Play, leveraging AI as an integrated part of the development workflow. Product owner of internal A/B testing tool. iOS development using SwiftUI, Android development using Jetpack Compose.</p>
+          <p class="cv-desc">Senior fullstack AI developer at SVT Play, leveraging AI as an integrated part of the development workflow. Product owner of internal A/B testing tool. iOS development using SwiftUI, Android development using Jetpack Compose and backend grapghQL in Kotlin.</p>
         </div>
       </a>
 
@@ -671,6 +667,14 @@
       </a>
     </div>
   </footer>
+
+  <script>
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const now = new Date();
+    const monthName = months[now.getMonth()];
+    const year = now.getFullYear();
+    document.getElementById('current-date').textContent = `${monthName} ${year}`;
+  </script>
 
 </body>
 </html>
